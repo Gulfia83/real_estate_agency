@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.TextField(verbose_name='Текст жалобы')),
                 ('flat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='claims', to='property.flat', verbose_name='Квартира, на которую пожаловались')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_claims', to=settings.AUTH_USER_MODEL, verbose_name='Кто пожаловался')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='claims', to=settings.AUTH_USER_MODEL, verbose_name='Кто пожаловался')),
             ],
         ),
     ]
