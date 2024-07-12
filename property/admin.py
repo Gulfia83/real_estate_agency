@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import Flat, Claim, Owner
 
 
+@admin.register(Claim)
 class ClaimAdmin(admin.ModelAdmin):
     raw_id_fields = ('flat',)
 
@@ -12,6 +13,7 @@ class OwnerFlatInline(admin.TabularInline):
     raw_id_fields = ('owner', 'flat')
 
 
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     inlines = [
         OwnerFlatInline
@@ -24,6 +26,7 @@ class FlatAdmin(admin.ModelAdmin):
     raw_id_fields = ('liked_by',)
 
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     inlines = [
         OwnerFlatInline
@@ -31,8 +34,3 @@ class OwnerAdmin(admin.ModelAdmin):
     exclude = ['flats']
     raw_id_fields = ('flats',)
     search_fields = ('owner', 'owner_pure_phone')
-
-
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Claim, ClaimAdmin)
-admin.site.register(Owner, OwnerAdmin)
