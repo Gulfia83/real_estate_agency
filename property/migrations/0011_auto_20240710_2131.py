@@ -8,13 +8,13 @@ def set_relation(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
 
     flats = Flat.objects.all()
-    for flat in flats:
+    for flat in flats.iterator():
         owner, _ = (
             Owner.objects
-            .get_or_create(owner=flat.owner,
-                           owners_phonenumber=flat.owners_phonenumber,
+            .get_or_create(name=flat.owner,
+                           phonenumber=flat.owners_phonenumber,
                            defaults={
-                                'owner_pure_phone': flat.owner_pure_phone,
+                                'pure_phone': flat.owner_pure_phone,
                             })
             )
         flat.owners.set([owner])
